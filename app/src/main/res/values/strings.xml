@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Zeller</string>
+    <string name="balance">Current Balance</string>
+    <string name="available_balance">0</string>
+    <string name="deposit">Deposit</string>
+    <string name="withdraw">Withdraw</string>
+
 </resources>
