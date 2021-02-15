@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.emazdoor.zeller.R
@@ -14,7 +13,7 @@ import java.util.*
 
 class TransactionsDashboardFragment : Fragment(), View.OnClickListener {
 
-    private lateinit var transactionsDashboardViewModel : TransactionsDashboardViewModel
+    private lateinit var transactionsDashboardViewModel: TransactionsDashboardViewModel
     private lateinit var binding: FragmentMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,35 +26,44 @@ class TransactionsDashboardFragment : Fragment(), View.OnClickListener {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        transactionsDashboardViewModel = ViewModelProvider(this).get(TransactionsDashboardViewModel::class.java)
-        binding =  FragmentMainBinding.inflate(inflater).apply {
+        transactionsDashboardViewModel =
+            ViewModelProvider(this).get(TransactionsDashboardViewModel::class.java)
+        binding = FragmentMainBinding.inflate(inflater).apply {
             lifecycleOwner = this@TransactionsDashboardFragment
             viewModel = transactionsDashboardViewModel
         }
-        
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-        binding.apply{
+
+        binding.apply {
             btnDeposit.setOnClickListener(this@TransactionsDashboardFragment)
             btnWithdraw.setOnClickListener(this@TransactionsDashboardFragment)
         }
 
-        transactionsDashboardViewModel.account.observe( viewLifecycleOwner, Observer {
-          println(it.balance)
+        transactionsDashboardViewModel.account.observe(viewLifecycleOwner, Observer {
+            println(it.balance)
         })
     }
 
     override fun onClick(view: View?) {
-        when(view?.id){
+        when (view?.id) {
             R.id.btnDeposit -> {
-                transactionsDashboardViewModel.depositMoney(10, "Saving")
+                transactionsDashboardViewModel.apply {
+                    depositMoney(amount.get(), description.get().toString())
+                    amount.set(0)
+                    description.set("")
+                }
             }
-            R.id.btnWithdraw ->{
-                transactionsDashboardViewModel.withdrawMoney(2, "Spending")
+            R.id.btnWithdraw -> {
+                transactionsDashboardViewModel.apply {
+                    withdrawMoney(amount.get(), description.get().toString())
+                    amount.set(0)
+                    description.set("")
+                }
             }
         }
     }

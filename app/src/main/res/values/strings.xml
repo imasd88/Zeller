@@ -4,5 +4,8 @@
     <string name="available_balance">0</string>
     <string name="deposit">Deposit</string>
     <string name="withdraw">Withdraw</string>
+    <string name="transaction_hint">Amount</string>
+    <string name="description">Description</string>
+
 
 </resources>

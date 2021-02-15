@@ -8,7 +8,6 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.emazdoor.zeller.R
 import com.emazdoor.zeller.databinding.ActivityMainBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 //@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

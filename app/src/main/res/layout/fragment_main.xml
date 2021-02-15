@@ -37,12 +37,46 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:textSize="34sp"
                 android:text='@{viewModel.isBalanceAvailable ? "" + viewModel.account.balance : "Account is Empty"}'
                 android:textColor="@{viewModel.isBalanceAvailable ? @color/black : @color/red}"
+                android:textSize="34sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtBalance" />
+
+            <LinearLayout
+                android:id="@+id/llTransactionContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginTop="100dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtAvailableBalance">
+
+                <EditText
+                    android:id="@+id/etAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:background="@drawable/backwithborder"
+                    android:hint="@string/transaction_hint"
+                    android:text="@={``+viewModel.amount}"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black_alpha40" />
+
+                <EditText
+                    android:id="@+id/etDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="32dp"
+                    android:layout_marginTop="50dp"
+                    android:background="@drawable/backwithborder"
+                    android:hint="@string/description"
+                    android:text="@={viewModel.description}"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black_alpha40" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,7 +86,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtAvailableBalance">
+                app:layout_constraintTop_toBottomOf="@id/llTransactionContainer">
 
                 <Button
                     android:id="@+id/btnDeposit"
